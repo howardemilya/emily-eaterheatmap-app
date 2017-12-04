@@ -14,7 +14,9 @@ class City
   end
 
   def restaurants
-    @restaurants
+    @restaurants.each_with_index do |r, i|
+      puts "#{i+1}. #{r.name}, #{r.location}"
+    end
   end
 
 
