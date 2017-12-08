@@ -6,7 +6,7 @@ class Restaurant
 
   @@all = []
 
-  def initialize(restaurant_hash)
+  def initialize(name:, location:, description:)
     @name = name
     @location = location
     @description = description
@@ -20,7 +20,18 @@ class Restaurant
   end
 
   def self.all
-    @@all
+    @@all.each do |rest|
+      puts "#{rest.name}"
+    end
+  end
+
+  def self.find_by_id(number)
+    @@all[number - 1]
+  end
+
+  def details
+    puts "#{@name} is located at #{@location}."
+    puts "#{@description}"
   end
 
 
