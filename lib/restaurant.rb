@@ -20,10 +20,9 @@ class Restaurant
   end
 
   def self.all
-    @@all.each_with_index do |r, i|
-      puts "#{i+1}. #{r.name}, #{r.location}"
-    end
+    @@all
   end
+
 
 
 

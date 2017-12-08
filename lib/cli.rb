@@ -12,11 +12,12 @@ class CommandLineInteface
     city_array = Scraper.scrape_cities_page(CITY_WEBSITE)
     City.create_from_collection(city_array)
     input = gets.strip
-    wanted_city = City.find_by_id(input)
-    binding.pry
+    wanted_city = City.find_by_id(input.to_i)
     wanted_city.add_city_restaurant_url
+
     rest_array = Scraper.scrape_restaurant_list_page(wanted_city.restaurant_url)
     Restaurant.create_from_collection(rest_array)
+    binding.pry
     Restaurant.all
   end
 

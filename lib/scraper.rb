@@ -28,7 +28,7 @@ class Scraper
       scraped_restaurants << restaurant
     end
     restaurant_list = scraped_restaurants.select {|h| h[:location] != ""}
-    binding.pry
+    # binding.pry
     restaurant_list
   end
 
