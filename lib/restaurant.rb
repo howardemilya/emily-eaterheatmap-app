@@ -12,6 +12,7 @@ class Restaurant
     @description = description
     @@all << self
   end
+  
 
 
 

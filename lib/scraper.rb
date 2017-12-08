@@ -5,16 +5,17 @@ require 'nokogiri'
 class Scraper
 
   def self.scrape_cities_page(index_url)
+
     scrape = Nokogiri::HTML(open(index_url))
     scraped_cities = []
+    # binding.pry
 
-    scrape.css("").each do |city|
-      city = {
-        :name => city.css("")
-      }
-      scraped_cities << city
+    scrape.css("h2").each do |city|
+      scraped_cities << city.text
     end
-    scraped_cities
+    scraped_cities.each_with_index do |city, i|
+      puts "#{i + 1}. #{city}"
+    end
   end
 
   def self.scrape_restaurant_list_page(city_url)

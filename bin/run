@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
+require 'pry'
+require_relative "../lib/cli"
+require_relative "../lib/scraper"
 
-require_relative "../lib/cli.rb"
 
+website = "https://www.eater.com/cities-directory"
 
-CommandLineInteface.new.run
+# binding.pry
+Scraper.scrape_cities_page(website)
