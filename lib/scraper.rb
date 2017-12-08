@@ -9,28 +9,27 @@ class Scraper
     scrape = Nokogiri::HTML(open(index_url))
     scraped_cities = []
     # binding.pry
-
     scrape.css("h2").each do |city|
       scraped_cities << city.text
     end
-    scraped_cities.each_with_index do |city, i|
-      puts "#{i + 1}. #{city}"
-    end
+    scraped_cities
   end
 
   def self.scrape_restaurant_list_page(city_url)
     restaurantinfo = Nokogiri::HTML(open(city_url))
-    scraped_restaurants = {}
+    scraped_restaurants = []
 
-    restaurantinfo.css("").each do |restaurant|
+    restaurantinfo.css("section.c-mapstack__card").each do |restaurant|
       restaurant = {
-        :name => restaurant.css(),
-        :location => restaurant.css(),
-        :description => restaurant.css()
+        :name => restaurant.css("h2").text.gsub("\n", ""),
+        :location => restaurant.css("div.c-mapstack__address").text,
+        :description => restaurant.css("div.c-entry-content p").text
       }
       scraped_restaurants << restaurant
     end
-    scraped_restaurants
+    restaurant_list = scraped_restaurants.select {|h| h[:location] != ""}
+    binding.pry
+    restaurant_list
   end
 
 end

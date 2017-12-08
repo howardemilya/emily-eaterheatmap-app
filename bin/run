@@ -2,7 +2,10 @@
 require 'pry'
 require_relative "../lib/cli"
 require_relative "../lib/scraper"
-
-
-
-CommandLineInteface.new.run 
+#
+#
+CommandLineInteface.new.run
+#
+# webpage = "https://houston.eater.com/maps/houston-best-new-restaurants-heatmap"
+#
+# Scraper.scrape_restaurant_list_page(webpage)
