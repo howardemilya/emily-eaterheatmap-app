@@ -4,7 +4,5 @@ require_relative "../lib/cli"
 require_relative "../lib/scraper"
 
 
-website = "https://www.eater.com/cities-directory"
 
-# binding.pry
-Scraper.scrape_cities_page(website)
+CommandLineInteface.new.run 
