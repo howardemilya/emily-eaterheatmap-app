@@ -39,7 +39,7 @@ class CommandLineInteface
     @wanted_city = City.find_by_id(input.to_i)
     @wanted_city.add_city_restaurant_url
     sleep(1)
-    puts "Great! You chose #{wanted_city.name}!"
+    puts "Great! You chose #{@wanted_city.name}!"
   end
 
   def list_restaurants
