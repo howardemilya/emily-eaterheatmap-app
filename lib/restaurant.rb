@@ -2,7 +2,7 @@ require 'pry'
 
 class Restaurant
 
-  attr_accessor :name, :location, :description
+  attr_accessor :name, :location, :description, :city
 
   @@all = []
 
@@ -13,9 +13,10 @@ class Restaurant
     @@all << self
   end
 
-  def self.create_from_collection(restaurant_array)
+  def self.create_from_collection(restaurant_array, city)
     restaurant_array.each do |restaurant|
-      Restaurant.new(restaurant)
+      r = Restaurant.new(restaurant)
+      r.city = city
     end
   end
 
