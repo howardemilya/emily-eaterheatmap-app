@@ -9,26 +9,12 @@ class CommandLineInteface
     greet_user
     sleep(1.5)
     list_cities
-    city_array = Scraper.scrape_cities_page(CITY_WEBSITE)
-    City.create_from_collection(city_array)
-    input = gets.strip
-    wanted_city = City.find_by_id(input.to_i)
-    wanted_city.add_city_restaurant_url
-    sleep(1)
-    puts "Great! You chose #{wanted_city.name}!"
     sleep(2)
-    puts "Here is a short list of the hottest restaurants in #{wanted_city.name} right now:"
-    sleep(2)
-    rest_array = Scraper.scrape_restaurant_list_page(wanted_city.restaurant_url)
-    Restaurant.create_from_collection(rest_array)
-    # binding.pry
-    Restaurant.all
-    puts "To learn more about a restaurant, please enter its number:"
-    input = gets.strip
-    wanted_restaurant = Restaurant.find_by_id(input.to_i)
-    puts "You selected #{wanted_restaurant.name}"
+    select_city
     sleep(1)
-    wanted_restaurant.details
+    list_restaurants
+    restaurant_details
+    puts "Type 'exit' to quit or 'more' to keep exploring"
   end
 
   CITY_WEBSITE = "https://www.eater.com/cities-directory"
@@ -46,9 +32,35 @@ class CommandLineInteface
     end
   end
 
+  def select_city
+    city_array = Scraper.scrape_cities_page(CITY_WEBSITE)
+    City.create_from_collection(city_array)
+    input = gets.strip
+    @wanted_city = City.find_by_id(input.to_i)
+    @wanted_city.add_city_restaurant_url
+    sleep(1)
+    puts "Great! You chose #{wanted_city.name}!"
+  end
 
+  def list_restaurants
+    puts "Here is a short list of the hottest restaurants in #{@wanted_city.name} right now:"
+    sleep(2)
+    rest_array = Scraper.scrape_restaurant_list_page(@wanted_city.restaurant_url)
+    Restaurant.create_from_collection(rest_array)
+    # binding.pry
+    Restaurant.all
+    puts "To learn more about a restaurant, please enter its number:"
+  end
 
-  #url list
-
+  def restaurant_details
+    input = gets.strip
+    @wanted_restaurant = Restaurant.find_by_id(input.to_i)
+    puts "You selected #{@wanted_restaurant.name}"
+    sleep(1)
+    # binding.pry
+    @wanted_restaurant.details
+    sleep(3)
+    puts "Would you like to exit or view another restaurants info?"
+  end
 
 end
