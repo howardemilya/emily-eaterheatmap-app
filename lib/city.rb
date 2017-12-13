@@ -13,7 +13,7 @@ class City
     @restaurants = []
     @@all << self
   end
-  
+
   def self.all
     @@all
   end
@@ -33,9 +33,7 @@ class City
   end
 
   def restaurants
-    @restaurants.each_with_index do |r, i|
-      puts "#{i+1}. #{r.name}, #{r.location}"
-    end
+    @restaurants
   end
 
   def add_city_restaurant_url
@@ -44,7 +42,7 @@ class City
     elsif @name == "Austin"
       @restaurant_url = "https://austin.eater.com/maps/best-new-restaurants-austin-heatmap"
     elsif @name == "Boston"
-      @restaurant_url == "https://boston.eater.com/maps/best-new-boston-restaurants-heatmap"
+      @restaurant_url = "https://boston.eater.com/maps/best-new-boston-restaurants-heatmap"
     elsif @name == "Charleston"
       @restaurant_url = "https://charleston.eater.com/maps/best-new-charleston-restaurants"
     elsif @name == "Chicago"
@@ -88,6 +86,10 @@ class City
     else @name == "Washington DC"
       @restaurant_url = "https://dc.eater.com/maps/best-new-dc-restaurants-heatmap"
     end
+  end
+
+  def clear
+    @restaurants = []
   end
 
 

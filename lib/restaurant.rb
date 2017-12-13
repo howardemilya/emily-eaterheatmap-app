@@ -21,9 +21,7 @@ class Restaurant
   end
 
   def self.all
-    @@all.each do |rest|
-      puts "#{rest.name}"
-    end
+    @@all
   end
 
   def self.find_by_id(number)
@@ -33,6 +31,10 @@ class Restaurant
   def details
     puts "#{@name} is located at #{@location}."
     puts "#{@description}"
+  end
+
+  def self.clear
+    @@all = []
   end
 
 
